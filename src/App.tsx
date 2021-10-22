@@ -1,15 +1,20 @@
+import { Layout } from 'antd';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 
-import AppRouter from './components/AppRouter/AppRouter';
+import AppRouter from './components/AppRouter';
+import Navbar from './components/Navbar';
 import { store } from './store';
+import './global.css';
 
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <AppRouter />
-      </BrowserRouter>
+      <Layout>
+        <Navbar />
+        <Layout.Content>
+            <AppRouter />
+        </Layout.Content>
+      </Layout>
     </Provider>
   );
 }

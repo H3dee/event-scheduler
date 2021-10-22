@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 
 import { publicRoutes, privateRoutes } from '../../router';
 
@@ -11,16 +11,20 @@ export const AppRouter: FC = () => {
   const renderPrivateRoutes = () =>
     privateRoutes.map((privateRoute) => <Route {...privateRoute} />);
 
-  return isAuthenticated ? (
-    <Switch>
-      {renderPrivateRoutes()}
-      <Redirect to="/events" />
-    </Switch>
-  ) : (
-    <Switch>
-      {renderPublicRoutes()}
-      <Redirect to="/login" />
-    </Switch>
+  return (
+    <BrowserRouter>
+      {isAuthenticated ? (
+        <Switch>
+          {renderPrivateRoutes()}
+          <Redirect to="/events" />
+        </Switch>
+      ) : (
+        <Switch>
+          {renderPublicRoutes()}
+          <Redirect to="/login" />
+        </Switch>
+      )}
+    </BrowserRouter>
   );
 };
 
