@@ -4,7 +4,7 @@ import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 import { publicRoutes, privateRoutes } from '../../router';
 
 export const AppRouter: FC = () => {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   const renderPublicRoutes = () => publicRoutes.map((publicRoute) => <Route {...publicRoute} />);
 

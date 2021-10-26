@@ -1,0 +1,27 @@
+.nav-menu {
+  display: flex;
+  height: 100%;
+  &__user-name {
+    color: white;
+    font-size: 14px;
+    span {
+      position: relative;
+      top: 3px;
+    }
+  }
+  button {
+    height: 100%;
+    margin-left: 15px;
+    padding: 0px 15px;
+    background: none;
+    border: none;
+    color: #cccc;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.25s ease-out;
+    &:hover {
+      background: white;
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}

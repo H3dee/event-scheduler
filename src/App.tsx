@@ -11,7 +11,7 @@ function App() {
     <Provider store={store}>
       <Layout>
         <Navbar />
-        <Layout.Content>
+        <Layout.Content className="page">
             <AppRouter />
         </Layout.Content>
       </Layout>
