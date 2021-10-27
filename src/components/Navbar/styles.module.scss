@@ -1,13 +1,9 @@
 .nav-menu {
   display: flex;
   height: 100%;
-  &__user-name {
+  &__user-login {
     color: white;
-    font-size: 14px;
-    span {
-      position: relative;
-      top: 3px;
-    }
+    font-size: 18px;
   }
   button {
     height: 100%;

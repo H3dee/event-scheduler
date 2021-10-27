@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { batch } from 'react-redux';
 import { IUser } from '../../models';
 
 import { AppDispatch } from '../index';
@@ -36,8 +37,8 @@ const loginUser = (login: string, password: string) => (dispatch: AppDispatch) =
     dispatch(setIsLoading(true));
 
     setTimeout(async () => {
-      const response = await axios.get<IUser[]>('../../data/users.json');
-      const users = response.data;
+      const response = await axios.get<IUser[]>('./users.json');
+      const users = response?.data;
 
       const matchingUser = users.find((user) => user.login === login && user.password === password);
 
@@ -45,8 +46,11 @@ const loginUser = (login: string, password: string) => (dispatch: AppDispatch) =
         localStorage.setItem('userName', matchingUser.login);
         localStorage.setItem('auth', 'true');
 
-        dispatch(setUser(matchingUser));
-        dispatch(setIsAuthenticated(true));
+        batch(() => {
+          dispatch(setUser(matchingUser));
+          dispatch(setIsAuthenticated(true));
+          dispatch(setError(''));
+        });
 
         return;
       }

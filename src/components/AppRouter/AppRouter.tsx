@@ -1,15 +1,21 @@
 import { FC } from 'react';
 import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 import { publicRoutes, privateRoutes } from '../../router';
 
 export const AppRouter: FC = () => {
-  const isAuthenticated = false;
+  const { isAuthenticated } = useTypedSelector((store) => store.auth);
 
-  const renderPublicRoutes = () => publicRoutes.map((publicRoute) => <Route {...publicRoute} />);
+  const renderPublicRoutes = () =>
+    publicRoutes.map((publicRoute, index) => (
+      <Route key={`public-route-${index}-${publicRoute.path}`} {...publicRoute} />
+    ));
 
   const renderPrivateRoutes = () =>
-    privateRoutes.map((privateRoute) => <Route {...privateRoute} />);
+    privateRoutes.map((privateRoute, index) => (
+      <Route key={`public-route-${index}-${privateRoute.path}`} {...privateRoute} />
+    ));
 
   return (
     <BrowserRouter>
